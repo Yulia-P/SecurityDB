@@ -45,3 +45,5 @@ create table personal_inf( --личная информация
  experience varchar(50), --стаж
  phoneNum varchar(20), --номер телефона
  wage int);  --зарплата
+
+ alter table official_inf add date_employment date, date_dismissal date;

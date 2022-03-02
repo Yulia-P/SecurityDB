@@ -36,25 +36,25 @@ insert into  specialty (specialty) values ('Юрист');
 
 ---------PERSONAL_INFORMATION---------
 insert into personal_inf(personalNum, dateBirth, placeBirth, passport, address, regAddress, maritalStat,children) 
-  values (1, '18/10/1969', 'г. Минск', '2507697643', 'г. Минск, ул. Кедышко д. 5а, кв. 22', 'г. Минск, ул. Кедышко д. 5а, кв. 22', 'Женат', 2);
+  values (1, '1969-10-18', 'г. Минск', '2507697643', 'г. Минск, ул. Кедышко д. 5а, кв. 22', 'г. Минск, ул. Кедышко д. 5а, кв. 22', 'Женат', 2);
 insert into personal_inf(personalNum, dateBirth, placeBirth, passport, address, regAddress, maritalStat,children) 
-  values (2, '8/01/1979', 'г. Гомель', '3104124558', 'г. Минск, ул. Гошкевича д. 21, кв. 56', 'г. Минск, ул. Гошкевича д. 21, кв. 56', 'Не женат', 0);
+  values (2, '1979-01-08', 'г. Гомель', '3104124558', 'г. Минск, ул. Гошкевича д. 21, кв. 56', 'г. Минск, ул. Гошкевича д. 21, кв. 56', 'Не женат', 0);
 insert into personal_inf(personalNum, dateBirth, placeBirth, passport, address, regAddress, maritalStat,children) 
-  values (3, '22/08/1980', 'г. Солигорск', '7658593211', 'г. Минск, ул. 8 Марта д. 15, кв. 10', 'г. Солигорск, ул. Грушевка д. 87, кв. 13', 'Не женат', 0);
+  values (3, '1980-08-22', 'г. Солигорск', '7658593211', 'г. Минск, ул. 8 Марта д. 15, кв. 10', 'г. Солигорск, ул. Грушевка д. 87, кв. 13', 'Не женат', 0);
 insert into personal_inf(personalNum, dateBirth, placeBirth, passport, address, regAddress, maritalStat,children) 
-  values (4, '15/04/1978', 'г. Минск', '1278439629', 'г. Минск, ул. Интернациональная д. 13, кв. 12', 'г. Минск, ул. Интернациональная д. 13, кв. 12', 'Замежем', 1);
+  values (4, '1978-04-15', 'г. Минск', '1278439629', 'г. Минск, ул. Интернациональная д. 13, кв. 12', 'г. Минск, ул. Интернациональная д. 13, кв. 12', 'Замежем', 1);
 insert into personal_inf(personalNum, dateBirth, placeBirth, passport, address, regAddress, maritalStat,children) 
-  values (5, '3/12/1969', 'г. Могилев', '3456285439', 'г. Минск, ул. Первомайская д. 14, кв. 44', 'г. Минск, ул. Первомайская д. 14, кв. 44', 'Не замужем', 0);
+  values (5, '1969-12-03', 'г. Могилев', '3456285439', 'г. Минск, ул. Первомайская д. 14, кв. 44', 'г. Минск, ул. Первомайская д. 14, кв. 44', 'Не замужем', 0);
 insert into personal_inf(personalNum, dateBirth, placeBirth, passport, address, regAddress, maritalStat,children) 
-  values (6, '28/02/1981', 'г. Молодечно', '1980754287', 'г. Минск, ул. Аранская д. 10, кв. 43', 'г. Минск, ул. Аранская д. 10, кв. 43', 'Женат', 1);
+  values (6, '1981-02-28', 'г. Молодечно', '1980754287', 'г. Минск, ул. Аранская д. 10, кв. 43', 'г. Минск, ул. Аранская д. 10, кв. 43', 'Женат', 1);
 insert into personal_inf(personalNum, dateBirth, placeBirth, passport, address, regAddress, maritalStat,children) 
-  values (7, '22/08/1980', 'г. Полоцк', '1554389876', 'г. Минск, ул. Городентская д. 22, кв. 67', 'г. Минск, ул. Городентская д. 22, кв. 67', 'Замужем', 2);
+  values (7, '1980-08-22', 'г. Полоцк', '1554389876', 'г. Минск, ул. Городентская д. 22, кв. 67', 'г. Минск, ул. Городентская д. 22, кв. 67', 'Замужем', 2);
 insert into personal_inf(personalNum, dateBirth, placeBirth, passport, address, regAddress, maritalStat,children) 
-  values (8, '15/04/1978', 'г. Минск', '3245673298', 'г. Минск, ул. Белорусская д. 17, кв. 56', 'г. Минск, ул. Белорусская д. 17, кв. 56', 'Женат', 1);
+  values (8, '1978-04-15', 'г. Минск', '3245673298', 'г. Минск, ул. Белорусская д. 17, кв. 56', 'г. Минск, ул. Белорусская д. 17, кв. 56', 'Женат', 1);
 insert into personal_inf(personalNum, dateBirth, placeBirth, passport, address, regAddress, maritalStat,children) 
-  values (9, '11/09/1966', 'г. Минск', '1276844398', 'г. Минск, ул. Петрова д. 89, кв. 12', 'г. Минск, ул. Петрова д. 89, кв. 12', 'Замужем', 1);
+  values (9, '1966-09-11', 'г. Минск', '1276844398', 'г. Минск, ул. Петрова д. 89, кв. 12', 'г. Минск, ул. Петрова д. 89, кв. 12', 'Замужем', 1);
 insert into personal_inf(personalNum, dateBirth, placeBirth, passport, address, regAddress, maritalStat,children) 
-  values (10, '13/03/1976', 'г. Минск', '8765452187', 'г. Минск, ул. Володарского д. 67, кв. 54', 'г. Минск, ул. Володарского д. 67, кв. 54', 'Не женат', 0);
+  values (10, '1976-03-13', 'г. Минск', '8765452187', 'г. Минск, ул. Володарского д. 67, кв. 54', 'г. Минск, ул. Володарского д. 67, кв. 54', 'Не женат', 0);
 
 ---------OFFICIAL_INFORMATION---------
 insert into official_inf (idEmployee, personalNum, surname, name, patronymic, idDep, idPost, education, idSpec, experience, phoneNum, wage)
@@ -77,3 +77,18 @@ insert into official_inf (idEmployee, personalNum, surname, name, patronymic, id
   values (12286264, 9, 'Абрамова', 'Екатерина', 'Абрамовна', 3, 7, 'средне-специальное', 7, '8 лет', '80(29)456-61-12', 760);
 insert into official_inf (idEmployee, personalNum, surname, name, patronymic, idDep, idPost, education, idSpec, experience, phoneNum, wage)
   values (16427918, 10, 'Лещенко', 'Антон', 'Владимирович', 4, 8, 'высшее', 1, '3 лет', '80(29)128-54-21', 10000);
+
+select * from official_inf;
+
+  update official_inf set date_employment = '2014-01-22' where personalNum=9;
+  update official_inf set date_employment = '2010-07-08', date_dismissal='2020-03-12' where personalNum=8;
+  update official_inf set date_employment = '2019-01-22' where personalNum=5;
+  update official_inf set date_employment = '2012-12-01', date_dismissal='2022-02-03' where personalNum=1;
+ --
+ update official_inf set date_employment = '2019-03-15' where personalNum=4;
+ update official_inf set date_employment = '2014-09-09', date_dismissal='2021-11-25' where personalNum=7;
+ update official_inf set date_employment = '2019-08-06' where personalNum=10;
+ update official_inf set date_employment = '2014-01-24', date_dismissal='2019-09-03' where personalNum=2;
+ update official_inf set date_employment = '2015-02-24' where personalNum=11;
+ update official_inf set date_employment = '2010-02-08', date_dismissal='2021-07-02' where personalNum=3;
+ update official_inf set date_employment = '2015-10-27' where personalNum=6;
