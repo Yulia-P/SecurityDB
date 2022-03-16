@@ -46,4 +46,12 @@ create table personal_inf( --личная информация
  phoneNum varchar(20), --номер телефона
  wage int);  --зарплата
 
- alter table official_inf add date_employment date, date_dismissal date;
+ alter table official_inf add status varchar(20);
+
+  alter table official_inf DROP COLUMN date_employment, date_dismissal;
+
+  alter table personal_inf drop column dateBirth;
+
+  alter table personal_inf add dateBirth varchar(50);
+
+  select * from personal_inf

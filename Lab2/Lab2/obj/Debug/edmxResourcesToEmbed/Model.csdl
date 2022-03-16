@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PERSONNELModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="departments">
+    <Key>
+      <PropertyRef Name="idDep" />
+    </Key>
+    <Property Name="idDep" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="leader" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phoneNum" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="official_inf" Relationship="Self.idDep_ofInf_FK" FromRole="departments" ToRole="official_inf" />
+  </EntityType>
+  <EntityType Name="official_inf">
+    <Key>
+      <PropertyRef Name="idEmployee" />
+    </Key>
+    <Property Name="idEmployee" Type="Int32" Nullable="false" />
+    <Property Name="personalNum" Type="Int32" />
+    <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idDep" Type="Int32" />
+    <Property Name="idPost" Type="Int32" />
+    <Property Name="education" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idSpec" Type="Int32" />
+    <Property Name="experience" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phoneNum" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="wage" Type="Int32" />
+    <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="departments" Relationship="Self.idDep_ofInf_FK" FromRole="official_inf" ToRole="departments" />
+    <NavigationProperty Name="posts" Relationship="Self.idPost_ofInf_FK" FromRole="official_inf" ToRole="posts" />
+    <NavigationProperty Name="specialty" Relationship="Self.idSpec_ofInf_FK" FromRole="official_inf" ToRole="specialty" />
+    <NavigationProperty Name="personal_inf" Relationship="Self.personalNum_FK" FromRole="official_inf" ToRole="personal_inf" />
+  </EntityType>
+  <EntityType Name="personal_inf">
+    <Key>
+      <PropertyRef Name="personalNum" />
+    </Key>
+    <Property Name="personalNum" Type="Int32" Nullable="false" />
+    <Property Name="placeBirth" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="passport" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="regAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="maritalStat" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="children" Type="Int32" />
+    <Property Name="dateBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="official_inf" Relationship="Self.personalNum_FK" FromRole="personal_inf" ToRole="official_inf" />
+  </EntityType>
+  <EntityType Name="posts">
+    <Key>
+      <PropertyRef Name="idPost" />
+    </Key>
+    <Property Name="idPost" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="post" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="official_inf" Relationship="Self.idPost_ofInf_FK" FromRole="posts" ToRole="official_inf" />
+  </EntityType>
+  <EntityType Name="specialty">
+    <Key>
+      <PropertyRef Name="idSpec" />
+    </Key>
+    <Property Name="idSpec" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="specialty1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="official_inf" Relationship="Self.idSpec_ofInf_FK" FromRole="specialty" ToRole="official_inf" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE">
+    <Key>
+      <PropertyRef Name="idEmployee" />
+    </Key>
+    <Property Name="idEmployee" Type="Int32" Nullable="false" />
+    <Property Name="personalNum" Type="Int32" />
+    <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idDep" Type="Int32" />
+    <Property Name="idPost" Type="Int32" />
+    <Property Name="education" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idSpec" Type="Int32" />
+    <Property Name="experience" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phoneNum" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="wage" Type="Int32" />
+    <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="idDep_ofInf_FK">
+    <End Role="departments" Type="Self.departments" Multiplicity="0..1" />
+    <End Role="official_inf" Type="Self.official_inf" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="departments">
+        <PropertyRef Name="idDep" />
+      </Principal>
+      <Dependent Role="official_inf">
+        <PropertyRef Name="idDep" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idPost_ofInf_FK">
+    <End Role="posts" Type="Self.posts" Multiplicity="0..1" />
+    <End Role="official_inf" Type="Self.official_inf" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="posts">
+        <PropertyRef Name="idPost" />
+      </Principal>
+      <Dependent Role="official_inf">
+        <PropertyRef Name="idPost" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idSpec_ofInf_FK">
+    <End Role="specialty" Type="Self.specialty" Multiplicity="0..1" />
+    <End Role="official_inf" Type="Self.official_inf" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="specialty">
+        <PropertyRef Name="idSpec" />
+      </Principal>
+      <Dependent Role="official_inf">
+        <PropertyRef Name="idSpec" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="personalNum_FK">
+    <End Role="personal_inf" Type="Self.personal_inf" Multiplicity="0..1" />
+    <End Role="official_inf" Type="Self.official_inf" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personal_inf">
+        <PropertyRef Name="personalNum" />
+      </Principal>
+      <Dependent Role="official_inf">
+        <PropertyRef Name="personalNum" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PERSONNELEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="departments" EntityType="Self.departments" />
+    <EntitySet Name="official_inf" EntityType="Self.official_inf" />
+    <EntitySet Name="personal_inf" EntityType="Self.personal_inf" />
+    <EntitySet Name="posts" EntityType="Self.posts" />
+    <EntitySet Name="specialty" EntityType="Self.specialty" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" />
+    <AssociationSet Name="idDep_ofInf_FK" Association="Self.idDep_ofInf_FK">
+      <End Role="departments" EntitySet="departments" />
+      <End Role="official_inf" EntitySet="official_inf" />
+    </AssociationSet>
+    <AssociationSet Name="idPost_ofInf_FK" Association="Self.idPost_ofInf_FK">
+      <End Role="posts" EntitySet="posts" />
+      <End Role="official_inf" EntitySet="official_inf" />
+    </AssociationSet>
+    <AssociationSet Name="idSpec_ofInf_FK" Association="Self.idSpec_ofInf_FK">
+      <End Role="specialty" EntitySet="specialty" />
+      <End Role="official_inf" EntitySet="official_inf" />
+    </AssociationSet>
+    <AssociationSet Name="personalNum_FK" Association="Self.personalNum_FK">
+      <End Role="personal_inf" EntitySet="personal_inf" />
+      <End Role="official_inf" EntitySet="official_inf" />
+    </AssociationSet>
+    <FunctionImport Name="AddOfficial_inf">
+      <Parameter Name="idEmployee" Mode="In" Type="Int32" />
+      <Parameter Name="personalNum" Mode="In" Type="Int32" />
+      <Parameter Name="surname" Mode="In" Type="String" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="patronymic" Mode="In" Type="String" />
+      <Parameter Name="idDep" Mode="In" Type="Int32" />
+      <Parameter Name="idPost" Mode="In" Type="Int32" />
+      <Parameter Name="education" Mode="In" Type="String" />
+      <Parameter Name="idSpec" Mode="In" Type="Int32" />
+      <Parameter Name="experience" Mode="In" Type="String" />
+      <Parameter Name="phoneNum" Mode="In" Type="String" />
+      <Parameter Name="wage" Mode="In" Type="Int32" />
+      <Parameter Name="date_employment" Mode="In" Type="DateTime" />
+      <Parameter Name="date_dismissal" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="AddPersonal_inf">
+      <Parameter Name="personalNum" Mode="In" Type="Int32" />
+      <Parameter Name="dateBirth" Mode="In" Type="DateTime" />
+      <Parameter Name="placeBirth" Mode="In" Type="String" />
+      <Parameter Name="passport" Mode="In" Type="String" />
+      <Parameter Name="address" Mode="In" Type="String" />
+      <Parameter Name="regAddress" Mode="In" Type="String" />
+      <Parameter Name="maritalStat" Mode="In" Type="String" />
+      <Parameter Name="children" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteOINF">
+      <Parameter Name="personalNum" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="DeletePINF">
+      <Parameter Name="personalNum" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetEmployee" ReturnType="Collection(PERSONNELModel.GetEmployee_Result)" />
+    <FunctionImport Name="GetEmployeeById" ReturnType="Collection(PERSONNELModel.GetEmployeeById_Result)">
+      <Parameter Name="personalNum" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ProcEmployee" ReturnType="Collection(PERSONNELModel.ProcEmployee_Result)" />
+    <FunctionImport Name="UpdateOINF">
+      <Parameter Name="idEmployee" Mode="In" Type="Int32" />
+      <Parameter Name="personalNum" Mode="In" Type="Int32" />
+      <Parameter Name="surname" Mode="In" Type="String" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="patronymic" Mode="In" Type="String" />
+      <Parameter Name="idDep" Mode="In" Type="Int32" />
+      <Parameter Name="idPost" Mode="In" Type="Int32" />
+      <Parameter Name="education" Mode="In" Type="String" />
+      <Parameter Name="idSpec" Mode="In" Type="Int32" />
+      <Parameter Name="experience" Mode="In" Type="String" />
+      <Parameter Name="phoneNum" Mode="In" Type="String" />
+      <Parameter Name="wage" Mode="In" Type="Int32" />
+      <Parameter Name="date_employment" Mode="In" Type="DateTime" />
+      <Parameter Name="date_dismissal" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UpdatePINF">
+      <Parameter Name="personalNum" Mode="In" Type="Int32" />
+      <Parameter Name="dateBirth" Mode="In" Type="DateTime" />
+      <Parameter Name="placeBirth" Mode="In" Type="String" />
+      <Parameter Name="passport" Mode="In" Type="String" />
+      <Parameter Name="address" Mode="In" Type="String" />
+      <Parameter Name="regAddress" Mode="In" Type="String" />
+      <Parameter Name="maritalStat" Mode="In" Type="String" />
+      <Parameter Name="children" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="GetEmployee_Result">
+    <Property Type="Int32" Name="personalNum" Nullable="false" />
+    <Property Type="String" Name="placeBirth" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="passport" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="address" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="regAddress" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="maritalStat" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="children" Nullable="true" />
+    <Property Type="String" Name="dateBirth" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="idEmployee" Nullable="false" />
+    <Property Type="Int32" Name="personalNum1" Nullable="true" />
+    <Property Type="String" Name="surname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="patronymic" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="idDep" Nullable="true" />
+    <Property Type="Int32" Name="idPost" Nullable="true" />
+    <Property Type="String" Name="education" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="idSpec" Nullable="true" />
+    <Property Type="String" Name="experience" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="phoneNum" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="wage" Nullable="true" />
+    <Property Type="String" Name="status" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="GetEmployeeById_Result">
+    <Property Type="Int32" Name="personalNum" Nullable="false" />
+    <Property Type="String" Name="placeBirth" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="passport" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="address" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="regAddress" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="maritalStat" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="children" Nullable="true" />
+    <Property Type="String" Name="dateBirth" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="idEmployee" Nullable="false" />
+    <Property Type="Int32" Name="personalNum1" Nullable="true" />
+    <Property Type="String" Name="surname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="patronymic" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="idDep" Nullable="true" />
+    <Property Type="Int32" Name="idPost" Nullable="true" />
+    <Property Type="String" Name="education" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="idSpec" Nullable="true" />
+    <Property Type="String" Name="experience" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="phoneNum" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="wage" Nullable="true" />
+    <Property Type="String" Name="status" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="ProcEmployee_Result">
+    <Property Type="Int32" Name="idEmployee" Nullable="false" />
+    <Property Type="Int32" Name="personalNum" Nullable="true" />
+    <Property Type="String" Name="surname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="patronymic" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="idDep" Nullable="true" />
+    <Property Type="Int32" Name="idPost" Nullable="true" />
+    <Property Type="String" Name="education" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="idSpec" Nullable="true" />
+    <Property Type="String" Name="experience" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="phoneNum" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="wage" Nullable="true" />
+    <Property Type="String" Name="status" Nullable="true" MaxLength="20" />
+  </ComplexType>
+</Schema>

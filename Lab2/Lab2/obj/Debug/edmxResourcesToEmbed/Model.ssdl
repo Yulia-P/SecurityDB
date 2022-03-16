@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище PERSONNELModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="departments">
+    <Key>
+      <PropertyRef Name="idDep" />
+    </Key>
+    <Property Name="idDep" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="department" Type="varchar" MaxLength="50" />
+    <Property Name="leader" Type="varchar" MaxLength="50" />
+    <Property Name="phoneNum" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="official_inf">
+    <Key>
+      <PropertyRef Name="idEmployee" />
+    </Key>
+    <Property Name="idEmployee" Type="int" Nullable="false" />
+    <Property Name="personalNum" Type="int" />
+    <Property Name="surname" Type="varchar" MaxLength="50" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="patronymic" Type="varchar" MaxLength="50" />
+    <Property Name="idDep" Type="int" />
+    <Property Name="idPost" Type="int" />
+    <Property Name="education" Type="varchar" MaxLength="50" />
+    <Property Name="idSpec" Type="int" />
+    <Property Name="experience" Type="varchar" MaxLength="50" />
+    <Property Name="phoneNum" Type="varchar" MaxLength="20" />
+    <Property Name="wage" Type="int" />
+    <Property Name="status" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="personal_inf">
+    <Key>
+      <PropertyRef Name="personalNum" />
+    </Key>
+    <Property Name="personalNum" Type="int" Nullable="false" />
+    <Property Name="placeBirth" Type="varchar" MaxLength="25" />
+    <Property Name="passport" Type="varchar" MaxLength="30" />
+    <Property Name="address" Type="varchar" MaxLength="50" />
+    <Property Name="regAddress" Type="varchar" MaxLength="50" />
+    <Property Name="maritalStat" Type="varchar" MaxLength="20" />
+    <Property Name="children" Type="int" />
+    <Property Name="dateBirth" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="posts">
+    <Key>
+      <PropertyRef Name="idPost" />
+    </Key>
+    <Property Name="idPost" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="post" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="specialty">
+    <Key>
+      <PropertyRef Name="idSpec" />
+    </Key>
+    <Property Name="idSpec" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="specialty" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "PERSONNEL.dbo.EMPLOYEE" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="EMPLOYEE">
+    <Key>
+      <PropertyRef Name="idEmployee" />
+    </Key>
+    <Property Name="idEmployee" Type="int" Nullable="false" />
+    <Property Name="personalNum" Type="int" />
+    <Property Name="surname" Type="varchar" MaxLength="50" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="patronymic" Type="varchar" MaxLength="50" />
+    <Property Name="idDep" Type="int" />
+    <Property Name="idPost" Type="int" />
+    <Property Name="education" Type="varchar" MaxLength="50" />
+    <Property Name="idSpec" Type="int" />
+    <Property Name="experience" Type="varchar" MaxLength="50" />
+    <Property Name="phoneNum" Type="varchar" MaxLength="20" />
+    <Property Name="wage" Type="int" />
+    <Property Name="status" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="idDep_ofInf_FK">
+    <End Role="departments" Type="Self.departments" Multiplicity="0..1" />
+    <End Role="official_inf" Type="Self.official_inf" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="departments">
+        <PropertyRef Name="idDep" />
+      </Principal>
+      <Dependent Role="official_inf">
+        <PropertyRef Name="idDep" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idPost_ofInf_FK">
+    <End Role="posts" Type="Self.posts" Multiplicity="0..1" />
+    <End Role="official_inf" Type="Self.official_inf" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="posts">
+        <PropertyRef Name="idPost" />
+      </Principal>
+      <Dependent Role="official_inf">
+        <PropertyRef Name="idPost" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idSpec_ofInf_FK">
+    <End Role="specialty" Type="Self.specialty" Multiplicity="0..1" />
+    <End Role="official_inf" Type="Self.official_inf" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="specialty">
+        <PropertyRef Name="idSpec" />
+      </Principal>
+      <Dependent Role="official_inf">
+        <PropertyRef Name="idSpec" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="personalNum_FK">
+    <End Role="personal_inf" Type="Self.personal_inf" Multiplicity="0..1" />
+    <End Role="official_inf" Type="Self.official_inf" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personal_inf">
+        <PropertyRef Name="personalNum" />
+      </Principal>
+      <Dependent Role="official_inf">
+        <PropertyRef Name="personalNum" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="AddOfficial_inf" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idEmployee" Type="int" Mode="In" />
+    <Parameter Name="personalNum" Type="int" Mode="In" />
+    <Parameter Name="surname" Type="varchar" Mode="In" />
+    <Parameter Name="name" Type="varchar" Mode="In" />
+    <Parameter Name="patronymic" Type="varchar" Mode="In" />
+    <Parameter Name="idDep" Type="int" Mode="In" />
+    <Parameter Name="idPost" Type="int" Mode="In" />
+    <Parameter Name="education" Type="varchar" Mode="In" />
+    <Parameter Name="idSpec" Type="int" Mode="In" />
+    <Parameter Name="experience" Type="varchar" Mode="In" />
+    <Parameter Name="phoneNum" Type="varchar" Mode="In" />
+    <Parameter Name="wage" Type="int" Mode="In" />
+    <Parameter Name="date_employment" Type="date" Mode="In" />
+    <Parameter Name="date_dismissal" Type="date" Mode="In" />
+  </Function>
+  <Function Name="AddPersonal_inf" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="personalNum" Type="int" Mode="In" />
+    <Parameter Name="dateBirth" Type="date" Mode="In" />
+    <Parameter Name="placeBirth" Type="varchar" Mode="In" />
+    <Parameter Name="passport" Type="varchar" Mode="In" />
+    <Parameter Name="address" Type="varchar" Mode="In" />
+    <Parameter Name="regAddress" Type="varchar" Mode="In" />
+    <Parameter Name="maritalStat" Type="varchar" Mode="In" />
+    <Parameter Name="children" Type="int" Mode="In" />
+  </Function>
+  <Function Name="avg_wage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="real">
+    <Parameter Name="idDep" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DeleteOINF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="personalNum" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DeletePINF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="personalNum" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetEmployeeById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="personalNum" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ProcEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="UpdateOINF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idEmployee" Type="int" Mode="In" />
+    <Parameter Name="personalNum" Type="int" Mode="In" />
+    <Parameter Name="surname" Type="varchar" Mode="In" />
+    <Parameter Name="name" Type="varchar" Mode="In" />
+    <Parameter Name="patronymic" Type="varchar" Mode="In" />
+    <Parameter Name="idDep" Type="int" Mode="In" />
+    <Parameter Name="idPost" Type="int" Mode="In" />
+    <Parameter Name="education" Type="varchar" Mode="In" />
+    <Parameter Name="idSpec" Type="int" Mode="In" />
+    <Parameter Name="experience" Type="varchar" Mode="In" />
+    <Parameter Name="phoneNum" Type="varchar" Mode="In" />
+    <Parameter Name="wage" Type="int" Mode="In" />
+    <Parameter Name="date_employment" Type="date" Mode="In" />
+    <Parameter Name="date_dismissal" Type="date" Mode="In" />
+  </Function>
+  <Function Name="UpdatePINF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="personalNum" Type="int" Mode="In" />
+    <Parameter Name="dateBirth" Type="date" Mode="In" />
+    <Parameter Name="placeBirth" Type="varchar" Mode="In" />
+    <Parameter Name="passport" Type="varchar" Mode="In" />
+    <Parameter Name="address" Type="varchar" Mode="In" />
+    <Parameter Name="regAddress" Type="varchar" Mode="In" />
+    <Parameter Name="maritalStat" Type="varchar" Mode="In" />
+    <Parameter Name="children" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="Хранилище PERSONNELModelContainer">
+    <EntitySet Name="departments" EntityType="Self.departments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="official_inf" EntityType="Self.official_inf" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="personal_inf" EntityType="Self.personal_inf" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="posts" EntityType="Self.posts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="specialty" EntityType="Self.specialty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [EMPLOYEE].[idEmployee] AS [idEmployee], 
+    [EMPLOYEE].[personalNum] AS [personalNum], 
+    [EMPLOYEE].[surname] AS [surname], 
+    [EMPLOYEE].[name] AS [name], 
+    [EMPLOYEE].[patronymic] AS [patronymic], 
+    [EMPLOYEE].[idDep] AS [idDep], 
+    [EMPLOYEE].[idPost] AS [idPost], 
+    [EMPLOYEE].[education] AS [education], 
+    [EMPLOYEE].[idSpec] AS [idSpec], 
+    [EMPLOYEE].[experience] AS [experience], 
+    [EMPLOYEE].[phoneNum] AS [phoneNum], 
+    [EMPLOYEE].[wage] AS [wage], 
+    [EMPLOYEE].[status] AS [status]
+    FROM [dbo].[EMPLOYEE] AS [EMPLOYEE]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="idDep_ofInf_FK" Association="Self.idDep_ofInf_FK">
+      <End Role="departments" EntitySet="departments" />
+      <End Role="official_inf" EntitySet="official_inf" />
+    </AssociationSet>
+    <AssociationSet Name="idPost_ofInf_FK" Association="Self.idPost_ofInf_FK">
+      <End Role="posts" EntitySet="posts" />
+      <End Role="official_inf" EntitySet="official_inf" />
+    </AssociationSet>
+    <AssociationSet Name="idSpec_ofInf_FK" Association="Self.idSpec_ofInf_FK">
+      <End Role="specialty" EntitySet="specialty" />
+      <End Role="official_inf" EntitySet="official_inf" />
+    </AssociationSet>
+    <AssociationSet Name="personalNum_FK" Association="Self.personalNum_FK">
+      <End Role="personal_inf" EntitySet="personal_inf" />
+      <End Role="official_inf" EntitySet="official_inf" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
