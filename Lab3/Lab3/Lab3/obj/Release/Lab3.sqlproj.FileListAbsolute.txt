@@ -1,0 +1,10 @@
+C:\Users\37529\Documents\GitHub\SecurityDB\Lab3\Lab3\Lab3\bin\Release\Lab3.dacpac
+C:\Users\37529\Documents\GitHub\SecurityDB\Lab3\Lab3\Lab3\bin\Release\Lab3.dll
+C:\Users\37529\Documents\GitHub\SecurityDB\Lab3\Lab3\Lab3\bin\Release\Lab3.pdb
+C:\Users\37529\Documents\GitHub\SecurityDB\Lab3\Lab3\Lab3\obj\Release\Lab3.sqlproj.AssemblyReference.cache
+C:\Users\37529\Documents\GitHub\SecurityDB\Lab3\Lab3\Lab3\obj\Release\Model.xml
+C:\Users\37529\Documents\GitHub\SecurityDB\Lab3\Lab3\Lab3\obj\Release\refactor.xml
+C:\Users\37529\Documents\GitHub\SecurityDB\Lab3\Lab3\Lab3\obj\Release\postdeploy.sql
+C:\Users\37529\Documents\GitHub\SecurityDB\Lab3\Lab3\Lab3\obj\Release\predeploy.sql
+C:\Users\37529\Documents\GitHub\SecurityDB\Lab3\Lab3\Lab3\obj\Release\Lab3.dll
+C:\Users\37529\Documents\GitHub\SecurityDB\Lab3\Lab3\Lab3\obj\Release\Lab3.pdb

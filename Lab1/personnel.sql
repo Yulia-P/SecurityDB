@@ -1,4 +1,3 @@
-
 create database PERSONNEL;
 
 --drop database PERSONNEL;
@@ -24,13 +23,14 @@ create table specialty( --специальности
 
 create table personal_inf( --лична€ информаци€
  personalNum int constraint personalNum_pk primary key, --индивидуальный номер
- dateBirth date, -- дата рождени€
  placeBirth varchar(25), --место рождени€
  passport varchar(30), --паспорт
  address varchar(50), --адрес проживани€
  regAddress varchar(50), --адрес регистрации
  maritalStat varchar(20), --семейное положение
- children int); --дети
+ children int, --дети
+ dateBirth varchar(50) );  -- дата рождени€
+
 
  create table official_inf( --служебна€ информаци€
  idEmployee int constraint idEmployee_pk primary key, --номер сотрудника
@@ -44,14 +44,5 @@ create table personal_inf( --лична€ информаци€
  idSpec int constraint idSpec_ofInf_FK foreign key references specialty(idSpec), --код специальности
  experience varchar(50), --стаж
  phoneNum varchar(20), --номер телефона
- wage int);  --зарплата
-
- alter table official_inf add status varchar(20);
-
-  alter table official_inf DROP COLUMN date_employment, date_dismissal;
-
-  alter table personal_inf drop column dateBirth;
-
-  alter table personal_inf add dateBirth varchar(50);
-
-  select * from personal_inf
+ wage int,  --зарплата
+ status  varchar(20)); --статус сотрудника

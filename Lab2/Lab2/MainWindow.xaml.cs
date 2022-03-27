@@ -83,6 +83,7 @@ namespace Lab2
             else
             {
                 DB db = new DB();
+                db.openConnection(connStr);
                 db.UpdateOffInf(idEmployee, personalNum, surname, name, patronymic, idDep, idPost, education, idSpec, experience, phoneNum, wage, status);
                 MessageBox.Show("Done");
                 db.closeConnection();
