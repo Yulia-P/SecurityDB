@@ -3,6 +3,7 @@
   select * from specialty;
   select * from personal_inf;
   select * from official_inf;
+ 
 ---------DEPARTMENTS---------
 insert into departments (department, leader, phoneNum) 
   values ('Коммерческий отдел', 'Войтов Антон Иванович', '327-09-07');

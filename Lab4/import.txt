@@ -1,0 +1,1 @@
+ogr2ogr -overwrite -f MSSQLSpatial -lco “GEOM_TYPE=geometry” -a_srs "EPSG:4326" "MSSQL:server=DESKTOP-P6IEL6K;database=PERSONNEL4;trusted_connection=yes" "C:\Users\37529\Desktop\db\gadm36_BLR_2.shp"
