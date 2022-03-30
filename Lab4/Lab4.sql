@@ -16,6 +16,13 @@ SET @Dg = geometry::STGeomFromText('POLYGON((0 0, 2 2, 2 2, 2 0, 0 0))', 0);
 SET @Dh = geometry::STGeomFromText('POLYGON((1 1, 3 1, 3 3, 3 3, 1 1))', 0);  
 SELECT @Dg.STDifference(@Dh).ToString(); -- возвращает объект, представляющий набор точек из одного экземпляра геометрии , который не лежит в пределах другого экземпляра геометрии 
 
+----
+declare @g1 geometry; 
+select @g1 = ogr_geometry from gadm36_blr_2 where ogr_fid = 3;
+declare @g2 geometry; 
+select @g2 = ogr_geometry from gadm36_blr_2 where ogr_fid = 1;
+select @g1.STIntersects(@g2) as [Пересеклось], @g1.STCrosses(@g2) as [Объединилось], @g1.STContains(@g2) as [Исключилось];
+
 --Найти расстояние между двумя объектами
 --Расстояние от одного Отдела к другому
 create view distance as select ogr_fid, ogr_geometry, department from departments d inner join gadm36_blr_2 g on d.locationDep = g.ogr_fid; 
@@ -31,6 +38,7 @@ select @dist = @org1.STDistance(@org2); --Возвращает кратчайшее расстояние между
 select @dist as 'Distance', (select department from distance where ogr_fid=17) as 'Dep1', department as 'Dep2' from distance where ogr_fid=5;
 
 select * from departments;
+
 -- Находим ближайший к Сотруднику Отдел 
  select surname as 'Employee', department as 'Dep', gb.name_1 as 'EmployeeCity', gb.name_2 as 'DepCity'
 		from official_inf oi 
@@ -73,7 +81,6 @@ select @geoD as 'Card', department as 'Dep' from departments where idDep=@idDep;
 select * from gadm36_blr_2;
 
 
-
 /*DECLARE @g geometry;   
 SET @g = geometry::STPolyFromWKB(0x0103000000010000000400000000000000000014400000000000001440000000000000244000000000000014400000000000002440000000000000244000000000000014400000000000001440, 0);  
 SELECT @g.STAsText();  
@@ -88,3 +95,9 @@ select @tre = geometry::STGeomFromText(@poll, 0)
 declare @geoP  as GEOMETRY;
 select @geoP = geometry::STPolyFromWKB(@tre, 0)
 select @geoP.STAsText() as 'Card', department as 'Dep' from departments where idDep=@idDep;*/
+
+-- Изменить (уточнить) пространственный объект, добавляя дополнительные точки
+select ogr_fid, name_1, name_2, ogr_geometry, ogr_geometry.ToString() as point, ogr_geometry.STSrid as rid from gadm36_blr_2
+
+declare @g geometry = geometry::STGeomFromText('Point(0 0)', 0);
+select @g.STBuffer(2) as geo, @g.STBuffer(2).ToString() as point from gadm36_blr_2

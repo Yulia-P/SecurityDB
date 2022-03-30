@@ -1,5 +1,8 @@
 create database PERSONNEL4;
 
+drop table official_inf;
+drop table personal_inf;
+
 create table departments( --отделы
  idDep int not null identity(1,1) constraint idDep_pk primary key,  --идентификатор отдела
  department varchar(50), --название отдела
@@ -24,7 +27,7 @@ create table personal_inf( --личная информация
  regAddress varchar(50), --адрес регистрации
  maritalStat varchar(20), --семейное положение
  children int, --дети
- dateBirth varchar(50) );  -- дата рождения
+ dateBirth varchar(50));  -- дата рождения
 
 
  create table official_inf( --служебная информация
@@ -122,8 +125,6 @@ insert into official_inf (idEmployee, personalNum, surname, name, patronymic, id
 insert into official_inf (idEmployee, personalNum, surname, name, patronymic, idDep, idPost, education, idSpec, experience, phoneNum, wage, status,  EmployeeAddress)
   values (12520954, 8, 'Егоров', 'Артем', 'Валерьевич', 4, 8, 'высшее', 1, '11 лет', '80(44)657-43-07', 20000, 'Не работает', 7);
 insert into official_inf (idEmployee, personalNum, surname, name, patronymic, idDep, idPost, education, idSpec, experience, phoneNum, wage, status,  EmployeeAddress)
-  values (12286204, 15, 'Абрамова', 'Екатерина', 'Абрамовна', 3, 7, 'средне-специальное', 7, '8 лет', '80(29)456-61-12', 760, 'Работает', 8);
+  values (12286299, 15, 'Абрамова', 'Екатерина', 'Абрамовна', 3, 7, 'средне-специальное', 7, '8 лет', '80(29)456-61-12', 760, 'Работает', 8);
 insert into official_inf (idEmployee, personalNum, surname, name, patronymic, idDep, idPost, education, idSpec, experience, phoneNum, wage, status,  EmployeeAddress)
   values (16427018, 14, 'Лещенко', 'Антон', 'Владимирович', 4, 8, 'высшее', 1, '3 лет', '80(29)128-54-21', 10000, 'Не работает', 9);
-
-  
