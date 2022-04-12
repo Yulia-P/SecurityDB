@@ -97,7 +97,5 @@ select @geoP = geometry::STPolyFromWKB(@tre, 0)
 select @geoP.STAsText() as 'Card', department as 'Dep' from departments where idDep=@idDep;*/
 
 -- »зменить (уточнить) пространственный объект, добавл€€ дополнительные точки
-select ogr_fid, name_1, name_2, ogr_geometry, ogr_geometry.ToString() as point, ogr_geometry.STSrid as rid from gadm36_blr_2
-
-declare @g geometry = geometry::STGeomFromText('Point(0 0)', 0);
+declare @g geometry = geometry::STGeomFromText('Point(0 2)', 0);
 select @g.STBuffer(2) as geo, @g.STBuffer(2).ToString() as point from gadm36_blr_2

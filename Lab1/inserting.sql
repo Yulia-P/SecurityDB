@@ -5,6 +5,8 @@
   select * from official_inf;
  
 ---------DEPARTMENTS---------
+insert into departments(department, leader) 
+  values ('Ген. Директор', 'Ген. Директор');
 insert into departments (department, leader, phoneNum) 
   values ('Коммерческий отдел', 'Войтов Антон Иванович', '327-09-07');
 insert into departments (department, leader, phoneNum) 
@@ -36,6 +38,10 @@ insert into  specialty (specialty) values ('Кассир');
 insert into  specialty (specialty) values ('Юрист');
 
 ---------PERSONAL_INFORMATION---------
+insert into personal_inf(personalNum) 
+  values (1002);
+insert into personal_inf(personalNum) 
+  values (13);
 insert into personal_inf(personalNum, placeBirth, passport, address, regAddress, maritalStat,children,dateBirth) 
   values (1, 'г. Минск', '2507697643', 'г. Минск, ул. Кедышко д. 5а, кв. 22', 'г. Минск, ул. Кедышко д. 5а, кв. 22', 'Женат', 2, '19.09.1998');
 insert into personal_inf(personalNum, placeBirth, passport, address, regAddress, maritalStat,children,dateBirth) 
