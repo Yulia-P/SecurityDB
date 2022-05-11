@@ -2,14 +2,11 @@
 
 --2.	Создать необходимые учетные записи, роли и пользователей. Объяснить назначение привилегий.
 --Login
-create Login jjuliaaa with password='jjuliaaa';
+create Login jjuliaaai with password='jjuliaaa';
 
 --User => Login
 use PERSONNELtest
-create user jjuliaaa_User for login jjuliaaa;
-
---Login without login
-create user JJUser without login;
+create user jjuliaaa_User for login jjuliaaai;
 
 --Role
 create role user_role;
@@ -22,30 +19,30 @@ EXEC sp_addrolemember @rolename = 'user_role', @membername = 'jjuliaaa_User';
 --3.	Продемонстрируйте заимствование прав для любой процедуры в базе данных.
 use PERSONNELtest
 
-create login log1 with password = 'loginn';
-create login log2 with password = 'login';
-create user log1 for login log1;
-create user log2 for login log2;
+create login logi1 with password = 'loginn';
+create login logi2 with password = 'login';
+create user logi1 for login logi1;
+create user logi2 for login logi2;
 go
 
-exec sp_addrolemember 'db_datareader', 'log1';
-exec sp_addrolemember 'db_ddladmin', 'log1';
-deny select on ranks to log2;
+exec sp_addrolemember 'db_datareader', 'logi1';
+exec sp_addrolemember 'db_ddladmin', 'logi1';
+deny select on ranks to logi2;
 go
 
-create procedure log1Rnks 
-	with execute as 'log1'
+create procedure logi1Rnks 
+	with execute as 'logi1'
 		as select * from ranks;
 go
 
-alter authorization on log1Rnks to log1;
+alter authorization on logi1Rnks to logi1;
 
-grant execute on log1Rnks to log2;
+grant execute on logi1Rnks to logi2;
 
 use PERSONNELtest;
 
-setuser 'log2';
-exec log1Rnks;
+setuser 'logi2';
+exec logi1Rnks;
 
 select * from ranks;
 
@@ -57,15 +54,15 @@ select * from ranks;
 use master;
 go
 
-create server audit CustomAudit 
+create server audit CustomAudit10
 to file(
-	filepath = 'C:\db\',
+	filepath = 'C:\test10\',
 	maxsize = 0 mb,
 	max_rollover_files = 0,
 	reserve_disk_space = off
 ) with ( queue_delay = 1000, on_failure = continue);
 
-alter server audit CustomAudit
+alter server audit CustomAudit10
 with (state=on)
 
 select * from sys.server_audits;
@@ -78,7 +75,7 @@ insert top(200) into[PERSONNELtest].dbo.ranks(idRank, ranks) values (7, 'ranks')
 update [PERSONNELtest].dbo.ranks set idRank=6 where idRank=7;
 
 --
-select statement from fn_get_audit_file('C:\db\*', null, null);	
+select statement from fn_get_audit_file('C:\test10\*', null, null);	
 
 --11.	Создать для экземпляра SQL Server ассиметричный ключ шифрования.
 --12.	Зашифровать и расшифровать данные при помощи этого ключа.
@@ -102,7 +99,7 @@ print @opentext;
 --13.	Создать для экземпляра SQL Server сертификат.
 use [PERSONNELtest];
 go
-create certificate TestCert
+create certificate TestCert5
 	encryption by password = N'pa$W0RD@'
 		with subject = N'Sample Certificate',
 	expiry_date = N'2022-12-31';
@@ -181,36 +178,33 @@ set encryption off;
 go
 
 --18.	Продемонстрировать применение хэширования.
-select HashBytes('SHA1', 'open the symmetric key with which to encrypt the data');
-select HashBytes('MD4', 'open the symmetric key with which to encrypt the data');
+select HashBytes('SHA1', 'show the use of encryption in sql') as SHA1;
+select HashBytes('MD2', 'show the use of encryption in sql') as MD2;
+select HashBytes('MD4', 'show the use of encryption in sql') as MD4;
+select HashBytes('MD5', 'show the use of encryption in sql') as MD5;
 
 --19.	Продемонстрировать применение ЭЦП при помощи сертификата.
 	--подписывает текст сертификатом и возвращает подпись
 	use [PERSONNELtest];
 	select * from sys.certificates;
+
 	-- подписываем
-	select SIGNBYCERT(256, N'jjuliaaa', N'pa$W0RD@') as ЭЦП;	--сертификат	
+	select SIGNBYCERT(257, N'jjuliaaa', N'pa$W0RD@') as ЭЦП;	--сертификат	
 
 	--0 - изменены, 1 - не изменены
-	select VERIFYSIGNEDBYCERT(256, 'jjuliaaa', 0x0100050204000000175411564B440730803D7BBF7D324D691DD63BA7B6AC61846CD35A0648B9175C11231186DE31FF6F2FBD717AAC5AD0710C2C7E88267A86066208DF7836CC1E5707A946F1EBCB76D87D85532AC5702D303C4E47392942BC7277FC2EECC808A0CB207ED3F4EA4B12954585C98927ECE333FE51D7E094A78833BD5E56C247D57F9EC4D41B0918D26BA46FC3EDA50587F87CA98F28107C7801BA46EB0D82B678744F10B603F4802432B0A0E1565C456495838D1D1DDEDF2CDE9E5F56C8064C7CCC6383748A9B46F3E7D9B4E576FDB3E1A1CEC7B6129EA9980DA31B1B5CA40D0609629C1903AA5245F828E5661D2C626BD6B984C3B3D806C127C48958C1E82FD82A09);
+	select VERIFYSIGNEDBYCERT(257, 'jjuliaaa', 0x0100050204000000FEA22DD0CF972511142CAC07027E49F3C35B5A2F1CC8D0B0D0095A8E408F77B718DFEC87D3324583C37169D8BA744A3273AC867D44BADB3DFD9A9DCF04117790235E8194A946D674896E5A6A6AAF0A173DCE5C892DB11B5930CE4F370D060FE7CB811258467B11A353CA4170B23560A373472805C1F72E228A60E707680C8E3AE20374774F2B5D050EA3DD207CC7F82BF2327A533DF467BAA30CF8D914FC0B166BDD2A0595C5B3392898DB642EB798945E7E33AD2CCAE4AC78ED1F535474A8273F0821C2A66DF41CC02A955A9E2A7B97D1D3C4DB0FA64D1DACE1617EB87005FA43D872A9418A75D6F3AF449F416CA3DF1246E9BCD77B35AD8EBE06C82AB98F1C);
 	
-	select * from sys.asymmetric_keys;
-	--
-	select SIGNBYASymKey(257, N'jjuuliaaa', N'passAsymm!') as ЭЦП;	--ас.ключ
-
-	--1, когда подписи совпадают; иначе 0.
-	select VERIFYSIGNEDBYASYMKEY(257, N'jjuuliaaa', 0x010005020400000029C77321081075850B605AFF72F9C3B472B8D5FF395A829AC0D21D2E2CD98B2B617762A4EDEEA26733FD0E47D5B4C7D450C9743841AAE488E8D1A1972520FF67483B619BAFBF4BB722AC31266C729989AE1D06ACB51973A848AD30E72A5F8BB4CFFE8AFCBE3CAC5E14853B1517B2DB4C09862DC6082FC02C40BAE78160017D8C73977946B97615C40CE2281A210F128E947BEEBB797A17740BCE2EBD72858006C820B1DCAE27492AF51D4ADBD548A3852833C064A80177D9EF9B0874014020250528949F29D59E633135771F7A2483531806A9B6F481D2F5201F8CDA4D47C31AB3CD1E80085704066745BBDB5D149983D5587D841F7FD9DED262147CFE1C0EA5);
 
 --20.	Сделать резервную копию необходимых ключей и сертификатов.
-backup certificate TestCert
-to file = N'C:\db\backup\BacTestCert.cer'
+backup certificate TestCert5
+to file = N'C:\test10\backup\BacTestCert5.cer'
 	with private key(
-		file = N'C:\db\backup\BacTestCert.pvk',
+		file = N'C:\test10\backup\BacTestCert5.pvk',
 		encryption by password = N'pa$W0RD@',
 		decryption by password = N'pa$W0RD@');
 
 use master;
-BACKUP MASTER KEY TO FILE = 'C:\db\backup\BacMasterKey.key' 
+BACKUP MASTER KEY TO FILE = 'C:\test10\backup\BacMasterKey5.key' 
         ENCRYPTION BY PASSWORD = 'pa$w@r&';
 
 
